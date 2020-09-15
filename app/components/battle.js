@@ -1,6 +1,7 @@
 import React from "react"
 import { FaUserFriends, FaFighterJet, FaTrophy } from "react-icons/fa"
 import PlayerInput from "./playerInput"
+import PlayerPreview from "./playerPreview"
 
 function Instructions() {
   return (
@@ -38,13 +39,19 @@ export default class Battle extends React.Component {
     }
 
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleReset = this.handleReset.bind(this)
   }
 
   handleSubmit(id, player) {
     this.setState({
-      [id]: player 
+      [id]: player,
     })
+  }
 
+  handleReset(id) {
+    this.setState({
+      [id]: null,
+    })
   }
 
   render() {
@@ -56,16 +63,32 @@ export default class Battle extends React.Component {
         <div className="players-container">
           <h1 className="center text header-lg">Players</h1>
           <div className="row space-around">
-            {!playerOne && (
+            {!playerOne ? (
               <PlayerInput
                 label="Player 1"
                 onSubmit={(player) => this.handleSubmit("playerOne", player)}
               />
+            ) : (
+              <PlayerPreview
+                label=""
+                username={this.state.playerOne}
+                onReset={() => {
+                  this.handleReset("playerOne")
+                }}
+              />
             )}
-            {!playerTwo && (
+            {!playerTwo ? (
               <PlayerInput
                 label="Player 2"
                 onSubmit={(player) => this.handleSubmit("playerTwo", player)}
+              />
+            ) : (
+              <PlayerPreview
+                label=""
+                username={this.state.playerTwo}
+                onReset={() => {
+                  this.handleReset("playerTwo")
+                }}
               />
             )}
           </div>
