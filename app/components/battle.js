@@ -1,5 +1,6 @@
 import React from "react"
 import { FaUserFriends, FaFighterJet , FaTrophy } from "react-icons/fa"
+import PlayerInput from "./playerInput"
 
 function Instructions() {
   return (
@@ -24,10 +25,12 @@ function Instructions() {
 }
 
 export default class Battle extends React.Component {
+  
   render() {
     return (
       <React.Fragment>
         <Instructions />
+        <PlayerInput label={"Player 1"} onSubmit={(value) => { console.log(value) }}/>
       </React.Fragment>
     )
   }
