@@ -24,7 +24,7 @@ export default function ProfileList ({ profile }) {
       {profile.company && (
         <li>
           <FaBriefcase color="#795548" size={22} />
-          {winner.profile.company}
+          {profile.company}
         </li>
       )}
       <li>
