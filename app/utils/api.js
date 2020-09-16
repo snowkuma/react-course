@@ -47,7 +47,7 @@ function getStarCount(repos) {
 }
 
 function sortPlayers(players) {
-  return players.sort((a, b) => a.score > b.score)
+  return players.sort((a, b) => b.score - a.score)
 }
 
 function getUserData(player) {
