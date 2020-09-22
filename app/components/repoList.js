@@ -5,8 +5,9 @@ import {
   FaCodeBranch,
   FaExclamationTriangle,
 } from "react-icons/fa"
+import ToolTip from "./tooltip"
 
-export default function RepoList ({
+export default function RepoList({
   login,
   stargazers_count,
   forks,
@@ -15,22 +16,30 @@ export default function RepoList ({
   return (
     <ul className="card-list">
       <li>
-        <FaUser color="rgb(255, 191, 116)" size={22} />
-        <a className="" href={`https://github.com/{login}`}>
-          {login}
-        </a>
+        <ToolTip text="Github username">
+          <FaUser color="rgb(255, 191, 116)" size={22} />
+          <a className="" href={`https://github.com/{login}`}>
+            {login}
+          </a>
+        </ToolTip>
       </li>
       <li>
-        <FaStar color="rgb(255, 215, 0)" size={22} />
-        {stargazers_count.toLocaleString()} stars
+        <ToolTip text="User's star count">
+          <FaStar color="rgb(255, 215, 0)" size={22} />
+          {stargazers_count.toLocaleString()} stars
+        </ToolTip>
       </li>
       <li>
-        <FaCodeBranch color="rgb(129, 195, 245)" size={22} />
-        {forks.toLocaleString()} forks
+        <ToolTip text="User's number of forked repositories">
+          <FaCodeBranch color="rgb(129, 195, 245)" size={22} />
+          {forks.toLocaleString()} forks
+        </ToolTip>
       </li>
       <li>
-        <FaExclamationTriangle color="rgb(241, 138, 147)" size={22} />
-        {open_issues.toLocaleString()} open issues
+        <ToolTip text="User's number of open issues">
+          <FaExclamationTriangle color="rgb(241, 138, 147)" size={22} />
+          {open_issues.toLocaleString()} open issues
+        </ToolTip>
       </li>
     </ul>
   )
