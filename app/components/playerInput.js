@@ -58,5 +58,5 @@ export default class PlayerInput extends React.Component {
 
 PlayerInput.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  label: PropTypes.string.isRequired
+  label: PropTypes.string.isRequired,
 }

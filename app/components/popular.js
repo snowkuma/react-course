@@ -1,6 +1,7 @@
 import React from "react"
 import LanguagesNav from "./languagesNav"
 import ReposGrid from "./reposGrid"
+import Loading from "./loading"
 import { fetchPopularRepos } from "../utils/api"
 
 export default class Popular extends React.Component {
@@ -66,8 +67,9 @@ export default class Popular extends React.Component {
 
         {error && <p className="center-text error">{error}</p>}
 
-        {repos[selectedLanguage] && <ReposGrid repos={repos[selectedLanguage]} />}
-
+        {repos[selectedLanguage] && (
+          <ReposGrid repos={repos[selectedLanguage]} />
+        )}
       </React.Fragment>
     )
   }

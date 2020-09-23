@@ -7,8 +7,9 @@ import {
   FaCode,
   FaUser,
 } from "react-icons/fa"
+import ToolTip from "./tooltip"
 
-export default function ProfileList ({ profile }) {
+export default function ProfileList({ profile }) {
   return (
     <ul className="card-list">
       <li>
@@ -17,14 +18,18 @@ export default function ProfileList ({ profile }) {
       </li>
       {profile.location && (
         <li>
-          <FaCompass color="rgb(144, 115, 255)" size={22} />
-          {profile.location}
+          <ToolTip text="User's Location">
+            <FaCompass color="rgb(144, 115, 255)" size={22} />
+            {profile.location}
+          </ToolTip>
         </li>
       )}
       {profile.company && (
         <li>
-          <FaBriefcase color="#795548" size={22} />
-          {profile.company}
+          <ToolTip text="User's Company">
+            <FaBriefcase color="#795548" size={22} />
+            {profile.company}
+          </ToolTip>
         </li>
       )}
       <li>

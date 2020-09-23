@@ -25,11 +25,11 @@ export default function ReposGrid({ repos }) {
               href={html_url}
               name={name}
             >
-            <RepoList 
-              login={login}
-              stargazers_count={stargazers_count}
-              forks={forks}
-              open_issues={open_issues}
+              <RepoList
+                login={login}
+                stargazers_count={stargazers_count}
+                forks={forks}
+                open_issues={open_issues}
               />
             </Card>
           </li>
