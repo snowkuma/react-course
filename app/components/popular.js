@@ -67,8 +67,9 @@ export default class Popular extends React.Component {
 
         {error && <p className="center-text error">{error}</p>}
 
-        {repos[selectedLanguage] && <ReposGrid repos={repos[selectedLanguage]} />}
-
+        {repos[selectedLanguage] && (
+          <ReposGrid repos={repos[selectedLanguage]} />
+        )}
       </React.Fragment>
     )
   }

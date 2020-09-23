@@ -28,7 +28,7 @@ export default function withHover(Component, propName = "hovering") {
     render() {
       const props = {
         [propName]: this.state.hovering,
-        ...this.props
+        ...this.props,
       }
       return (
         <div onMouseOver={this.onMouseOver} onMouseOut={this.onMouseOut}>

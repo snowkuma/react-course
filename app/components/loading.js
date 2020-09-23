@@ -3,13 +3,13 @@ import PropTypes from "prop-types"
 
 const styles = {
   content: {
-    fontSize: '35px',
-    position: 'absolute',
+    fontSize: "35px",
+    position: "absolute",
     left: 0,
     right: 0,
-    marginTop: '20px',
-    textAlign: 'center'
-  }
+    marginTop: "20px",
+    textAlign: "center",
+  },
 }
 
 export default class Loading extends React.Component {
@@ -17,16 +17,16 @@ export default class Loading extends React.Component {
     super(props)
 
     this.state = {
-      content: props.text
+      content: props.text,
     }
   }
-  
+
   componentDidMount() {
     const { speed, text } = this.props
     this.interval = window.setInterval(() => {
-      this.state.content === text + "..." 
-        ? this.setState({ content: "Loading"})
-        : this.setState(({ content }) => ({ content: content + '.'}))
+      this.state.content === text + "..."
+        ? this.setState({ content: "Loading" })
+        : this.setState(({ content }) => ({ content: content + "." }))
     }, speed)
   }
 
@@ -35,20 +35,16 @@ export default class Loading extends React.Component {
   }
 
   render() {
-    return (
-      <p style={styles.content}>
-        {this.state.content}
-      </p>
-    )
+    return <p style={styles.content}>{this.state.content}</p>
   }
 }
 
 Loading.propTypes = {
   text: PropTypes.string.isRequired,
-  speed: PropTypes.number.isRequired
+  speed: PropTypes.number.isRequired,
 }
 
 Loading.defaultProps = {
   text: "Loading",
-  speed: 300
+  speed: 300,
 }

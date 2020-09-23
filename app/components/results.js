@@ -24,7 +24,7 @@ const styles = {
     color: "#fff",
     textAlign: "center",
     fontSize: "14px",
-  }
+  },
 }
 
 export default class Results extends React.Component {
