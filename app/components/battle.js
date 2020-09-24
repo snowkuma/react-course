@@ -4,6 +4,7 @@ import PlayerInput from "./playerInput"
 import PlayerPreview from "./playerPreview"
 import Results from "./results"
 import { ThemeConsumer } from "../contexts/theme"
+import { Link } from "react-router-dom"
 
 function Instructions() {
   return (
@@ -50,7 +51,6 @@ export default class Battle extends React.Component {
     this.state = {
       playerOne: null,
       playerTwo: null,
-      battle: false,
     }
 
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -70,23 +70,7 @@ export default class Battle extends React.Component {
   }
 
   render() {
-    const { playerOne, playerTwo, battle } = this.state
-
-    if (battle === true) {
-      return (
-        <Results
-          playerOne={playerOne}
-          playerTwo={playerTwo}
-          onReset={() =>
-            this.setState({
-              playerOne: null,
-              playerTwo: null,
-              battle: false,
-            })
-          }
-        />
-      )
-    }
+    const { playerOne, playerTwo } = this.state
 
     return (
       <ThemeConsumer>
@@ -131,14 +115,17 @@ export default class Battle extends React.Component {
               </div>
 
               {playerOne && playerTwo && (
-                <button
+                <Link
                   className={`btn ${
                     theme === "dark" ? "light-btn" : "dark-btn"
                   } btn-space`}
-                  onClick={() => this.setState({ battle: true })}
+                  to={{
+                    pathname: "/battle/results",
+                    search: `?playerOne=${playerOne}&playerTwo=${playerTwo}`
+                  }}
                 >
                   Battle
-                </button>
+                </Link>
               )}
             </div>
           </React.Fragment>

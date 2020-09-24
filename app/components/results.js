@@ -2,9 +2,10 @@ import React from "react"
 import { battle } from "../utils/api"
 import Card from "./card"
 import ProfileList from "./profileList"
-import PropTypes from "prop-types"
 import Loading from "./loading"
-import { ThemeConsumer, ThemeProvider } from "../contexts/theme"
+import { ThemeConsumer } from "../contexts/theme"
+import queryString from "query-string"
+import { Link } from "react-router-dom"
 
 const styles = {
   container: {
@@ -41,7 +42,8 @@ export default class Results extends React.Component {
   }
 
   componentDidMount() {
-    const { playerOne, playerTwo } = this.props
+    const { playerOne, playerTwo } = queryString.parse(this.props.location.search)
+
     console.log(playerOne, playerTwo)
     battle([playerOne, playerTwo])
       .then((players) => {
@@ -98,23 +100,17 @@ export default class Results extends React.Component {
                 <ProfileList profile={loser.profile} />
               </Card>
             </div>
-            <button
+            <Link
               className={`btn btn-space ${
                 theme === "dark" ? "light-btn" : "dark-btn"
               }`}
-              onClick={this.props.onReset}
+              to="/battle"
             >
               Reset
-            </button>
+            </Link>
           </React.Fragment>
         )}
       </ThemeConsumer>
     )
   }
-}
-
-Results.propTypes = {
-  playerOne: PropTypes.string.isRequired,
-  playerTwo: PropTypes.string.isRequired,
-  onReset: PropTypes.func.isRequired,
 }
