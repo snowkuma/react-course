@@ -2,9 +2,10 @@ import React from "react"
 import { battle } from "../utils/api"
 import Card from "./card"
 import ProfileList from "./profileList"
-import PropTypes from "prop-types"
 import Loading from "./loading"
-import { ThemeConsumer, ThemeProvider } from "../contexts/theme"
+import { ThemeConsumer } from "../contexts/theme"
+import queryString from "query-string"
+import { Link } from "react-router-dom"
 
 const styles = {
   container: {
@@ -29,20 +30,18 @@ const styles = {
 }
 
 export default class Results extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      winner: null,
-      loser: null,
-      error: null,
-      isLoading: true,
-    }
+  state = {
+    winner: null,
+    loser: null,
+    error: null,
+    isLoading: true,
   }
 
   componentDidMount() {
-    const { playerOne, playerTwo } = this.props
-    console.log(playerOne, playerTwo)
+    const { playerOne, playerTwo } = queryString.parse(
+      this.props.location.search
+    )
+
     battle([playerOne, playerTwo])
       .then((players) => {
         this.setState({
@@ -98,23 +97,17 @@ export default class Results extends React.Component {
                 <ProfileList profile={loser.profile} />
               </Card>
             </div>
-            <button
+            <Link
               className={`btn btn-space ${
                 theme === "dark" ? "light-btn" : "dark-btn"
               }`}
-              onClick={this.props.onReset}
+              to="/battle"
             >
               Reset
-            </button>
+            </Link>
           </React.Fragment>
         )}
       </ThemeConsumer>
     )
   }
-}
-
-Results.propTypes = {
-  playerOne: PropTypes.string.isRequired,
-  playerTwo: PropTypes.string.isRequired,
-  onReset: PropTypes.func.isRequired,
 }
