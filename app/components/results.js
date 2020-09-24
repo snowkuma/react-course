@@ -30,21 +30,18 @@ const styles = {
 }
 
 export default class Results extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      winner: null,
-      loser: null,
-      error: null,
-      isLoading: true,
-    }
+  state = {
+    winner: null,
+    loser: null,
+    error: null,
+    isLoading: true,
   }
 
   componentDidMount() {
-    const { playerOne, playerTwo } = queryString.parse(this.props.location.search)
+    const { playerOne, playerTwo } = queryString.parse(
+      this.props.location.search
+    )
 
-    console.log(playerOne, playerTwo)
     battle([playerOne, playerTwo])
       .then((players) => {
         this.setState({
