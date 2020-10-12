@@ -6,9 +6,9 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import Loading from "./components/loading"
 import Nav from "./components/nav"
 
-const Popular = React.lazy(() => import("./components/popular"))
-const Battle = React.lazy(() => import("./components/battle"))
-const Results = React.lazy(() => import("./components/results"))
+const Popular = React.lazy(() => import("./pages/popular"))
+const Battle = React.lazy(() => import("./pages/battle"))
+const Results = React.lazy(() => import("./pages/results"))
 
 class App extends React.Component {
   state = {
