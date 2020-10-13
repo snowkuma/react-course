@@ -2,7 +2,6 @@ import React from "react"
 import { FaUserFriends, FaFighterJet, FaTrophy } from "react-icons/fa"
 import PlayerInput from "../components/playerInput"
 import PlayerPreview from "../components/playerPreview"
-import Results from "./results"
 import { ThemeConsumer } from "../contexts/theme"
 import { Link } from "react-router-dom"
 
