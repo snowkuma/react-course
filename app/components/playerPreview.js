@@ -1,11 +1,11 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { FaTimesCircle } from "react-icons/fa"
-import ThemeContext, { ThemeConsumer } from "../contexts/theme"
+import ThemeContext from "../contexts/theme"
 
 export default function PlayerPreview({ username, onReset, label }) {
   const theme = React.useContext(ThemeContext)
-  
+
   return (
     <div className="column player">
       <h3 className="player-label">{label}</h3>

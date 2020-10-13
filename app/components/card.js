@@ -10,7 +10,7 @@ export default function Card({
   name,
   children,
 }) {
-  const theme = useContext(ThemeContext)
+  const theme = React.useContext(ThemeContext)
   return (
     <div className={`card bg-${theme}`}>
       <h4 className="header-lg center-text">{header}</h4>
