@@ -43,85 +43,67 @@ function Instructions() {
   )
 }
 
-export default class Battle extends React.Component {
-  state = {
-      playerOne: null,
-      playerTwo: null,
-    }
-  handleSubmit = (id, player) => {
-    this.setState({
-      [id]: player,
-    })
-  }
+export default function Battle() {
+  const [playerOne, setPlayerOne] = React.useState(null)
+  const [playerTwo, setPlayerTwo] = React.useState(null)
 
-  handleReset = (id) => {
-    this.setState({
-      [id]: null,
-    })
-  }
+  const handleSubmit = (id, player) =>
+    id === "playerOne" ? setPlayerOne(player) : setPlayerTwo(player)
 
-  render() {
-    const { playerOne, playerTwo } = this.state
+  const handleReset = (id) =>
+    id === "playerOne" ? setPlayerOne(null) : setPlayerTwo(null)
 
-    return (
-      <ThemeConsumer>
-        {({ theme }) => (
-          <React.Fragment>
-            <Instructions />
-            <div className="players-container">
-              <h1 className="center text header-lg">Players</h1>
-              <div className="row space-around">
-                {!playerOne ? (
-                  <PlayerInput
-                    label="Player 1"
-                    onSubmit={(player) =>
-                      this.handleSubmit("playerOne", player)
-                    }
-                  />
-                ) : (
-                  <PlayerPreview
-                    label=""
-                    username={this.state.playerOne}
-                    onReset={() => {
-                      this.handleReset("playerOne")
-                    }}
-                  />
-                )}
-                {!playerTwo ? (
-                  <PlayerInput
-                    label="Player 2"
-                    onSubmit={(player) =>
-                      this.handleSubmit("playerTwo", player)
-                    }
-                  />
-                ) : (
-                  <PlayerPreview
-                    label=""
-                    username={this.state.playerTwo}
-                    onReset={() => {
-                      this.handleReset("playerTwo")
-                    }}
-                  />
-                )}
-              </div>
+  return (
+    <ThemeConsumer>
+      {({ theme }) => (
+        <React.Fragment>
+          <Instructions />
+          <div className="players-container">
+            <h1 className="center text header-lg">Players</h1>
+            <div className="row space-around">
+              {!playerOne ? (
+                <PlayerInput
+                  label="Player 1"
+                  onSubmit={(player) => handleSubmit("playerOne", player)}
+                />
+              ) : (
+                <PlayerPreview
+                  label="Player One"
+                  username={playerOne}
+                  onReset={() => handleReset("playerOne")}
+                />
+              )}
 
-              {playerOne && playerTwo && (
-                <Link
-                  className={`btn ${
-                    theme === "dark" ? "light-btn" : "dark-btn"
-                  } btn-space`}
-                  to={{
-                    pathname: "/battle/results",
-                    search: `?playerOne=${playerOne}&playerTwo=${playerTwo}`
-                  }}
-                >
-                  Battle
-                </Link>
+              {!playerTwo ? (
+                <PlayerInput
+                  label="Player 2"
+                  onSubmit={(player) => handleSubmit("playerTwo", player)}
+                />
+              ) : (
+                <PlayerPreview
+                  label="Player Two"
+                  username={playerTwo}
+                  onReset={() => handleReset("playerTwo")}
+                />
               )}
             </div>
-          </React.Fragment>
-        )}
-      </ThemeConsumer>
-    )
-  }
+
+            {playerOne && playerTwo && (
+              <Link
+                className={`btn ${
+                  theme === "dark" ? "light-btn" : "dark-btn"
+                } btn-space`}
+                to={{
+                  pathname: "/battle/results",
+                  search: `?playerOne=${playerOne}&playerTwo=${playerTwo}`,
+                }}
+              >
+                Battle
+              </Link>
+            )}
+          </div>
+        </React.Fragment>
+      )}
+    </ThemeConsumer>
+  )
 }
